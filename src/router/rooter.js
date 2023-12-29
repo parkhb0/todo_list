@@ -19,6 +19,10 @@ const rootRouter = createBrowserRouter([
         path: "/detail",
         element: <Detail />,
       },
+      {
+        path: "/detail/:id",
+        element: <Detail />,
+      },
     ],
   },
   {

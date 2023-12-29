@@ -9,6 +9,22 @@
   height: 35px;
   padding: 0 15px;
   border-radius: 5px;
+  margin-top: 10px;
+}
+
+.modifyBtnWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.modifyBtn {
+  width: 49%;
+  height: 35px;
+  padding: 0 15px;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 .title {

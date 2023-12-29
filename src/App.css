@@ -32,6 +32,11 @@ body {
   accent-color: var(--color-accent);
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
