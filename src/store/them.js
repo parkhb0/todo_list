@@ -4,7 +4,7 @@ let isDarkMode = createSlice({
   name: "isDarkMode",
   initialState: false,
   reducers: {
-    changeDarkMode(state) {
+    toggleDarkMode(state) {
       if (state == true) {
         return false;
       } else {
@@ -14,10 +14,10 @@ let isDarkMode = createSlice({
   },
 });
 
-export const { changeDarkMode } = isDarkMode.actions;
+export const { toggleDarkMode } = isDarkMode.actions;
 
 export default configureStore({
   reducer: {
-    them: isDarkMode.reducer,
+    isDarkMode: isDarkMode.reducer,
   },
 });

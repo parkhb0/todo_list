@@ -1,24 +1,45 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDarkMode } from "../store/them";
+import { toggleDarkMode } from "../store/them";
+import { FaMoon, FaSun } from "react-icons/fa";
+import { ButtonToggle } from "../styles/button";
+import styles from "../styles/Toobar.module.css";
 
-export default function Toolbar() {
+export default function Toolbar({ filters, filter, onFilterChange }) {
   const dispatch = useDispatch();
-  const isDarkMode = useSelector((state) => state.them);
+  const isDarkMode = useSelector((state) => state.isDarkMode);
   console.log("isDarkMode = ", isDarkMode);
 
-  const handleToggleIsDarkMode = () => {
+  const handleToggleDarkMode = () => {
     const _mode = localStorage.setItem("them", isDarkMode);
     if (_mode == false) {
-      dispatch(changeDarkMode(true));
+      dispatch(toggleDarkMode(true));
     } else {
-      dispatch(changeDarkMode(false));
+      dispatch(toggleDarkMode(false));
     }
   };
 
   return (
-    <div>
-      <button onClick={handleToggleIsDarkMode}>배경변경</button>
-    </div>
+    <header className={styles.header}>
+      <ButtonToggle onClick={handleToggleDarkMode}>
+        {isDarkMode ? <FaMoon /> : <FaSun />}
+      </ButtonToggle>
+      <div className={styles.filters}>
+        <ul>
+          {filters.map((value, index) => (
+            <li key={index}>
+              <button
+                className={`${styles.filter} ${
+                  filter === value && styles.selected
+                }`}
+                onClick={() => onFilterChange(value)}
+              >
+                {value}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </header>
   );
 }

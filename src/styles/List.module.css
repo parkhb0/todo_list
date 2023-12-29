@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0px;
+}
+
+.search > input {
+  width: calc(100% - 120px);
+  height: 32px;
+  padding: 0 15px;
+  margin-right: 10px;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+  border: none;
+}
+
+.search > select {
+  width: 120px;
+  height: 32px;
+  padding: 0 15px;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  border: none;
+}
