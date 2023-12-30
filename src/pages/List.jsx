@@ -8,8 +8,10 @@ export default function List() {
   const navigate = useNavigate();
   const filters = ["All", "ACTIVE", "COMPLITEED"];
   const [filter, setFilter] = useState("ALL");
+  const [search, setSearch] = useState("");
 
   const [list, setList] = useState(JSON.parse(localStorage.getItem("list")));
+  const getList = JSON.parse(localStorage.getItem("list"));
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("list")) === null) {
@@ -18,11 +20,41 @@ export default function List() {
     console.log("111");
   }, []);
 
+  const handleListSearch = (e) => {
+    const searText = e.target.value;
+    setSearch(searText);
+    // console.log("searText = ", searText);
+    const _list = [...getList];
+
+    if (searText != "") {
+      const result = _list.filter((item) => {
+        console.log(item.title.toUpperCase());
+        console.log("searText.toUpperCase() = ", searText.toUpperCase());
+        if (item.title.toUpperCase().includes(searText.toUpperCase())) {
+          return item;
+        }
+      });
+      setList(result);
+    } else {
+      setList(getList);
+    }
+  };
+
+  //   useEffect(() => {
+  //     if (localStorage.getItem("list") != null){
+
+  //     } console.log("search = ", search);
+  //   }, [search]);
+
   return (
     <>
       <Toolbar filters={filters} filter={filter} onFilterChange={setFilter} />
       <div className={styles.search}>
-        <input type="text" placeholder="검색을 입력 해주세요." />
+        <input
+          type="text"
+          placeholder="검색을 입력 해주세요."
+          onChange={handleListSearch}
+        />
         <select>
           <option>최근생성순</option>
           <option>업데이트순</option>
